@@ -1,51 +1,73 @@
-# War Room Digital - Golkar Jawa Timur
+# React + TypeScript + Vite
 
-A premium, high-fidelity intelligence and monitoring dashboard for **Golkar Jawa Timur**. This system serves as a tactical "War Room" for real-time monitoring of volunteer metrics, electability data, and social media sentiment across 38 districts/cities in East Java.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- **Real-time Monitoring**: Live tracking of field volunteer activities.
-- **Electability Analysis**: Visual data representation of electoral performance.
-- **Social Media Tracking**: Sentiment analysis and social trend monitoring.
-- **Tactical Dashboard**: A modern, high-contrast dark UI for focused decision making.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tech Stack
+## React Compiler
 
-- **Framework**: [React 18/19](https://reactjs.org/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Visuals**: [Recharts](https://recharts.org/), [React Leaflet](https://react-leaflet.js.org/)
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Getting Started
+## Expanding the ESLint configuration
 
-### Prerequisites
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- Node.js (Latest LTS recommended)
-- npm or yarn
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-### Installation
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/iwanharli/golkar-demo.git
-    cd golkar-demo
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Start the development server:
-    ```bash
-    npm run dev
-    ```
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-## Development
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
--   `npm run build`: Build the project for production.
--   `npm run preview`: Preview the production build locally.
--   `npm run lint`: Run linting checks across the codebase.
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
----
-
-© 2026 DIGITAL WAR ROOM | GOLKAR JAWA TIMUR v1.0.4-BETA
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
