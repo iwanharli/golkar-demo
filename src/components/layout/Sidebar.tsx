@@ -5,7 +5,6 @@ import {
   Share2, 
   Shield, 
   Wallet, 
-  Cpu, 
   ChevronRight 
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -24,7 +23,6 @@ const menuItems = [
   { id: 'social', label: 'Social Media & Youth', icon: Share2 },
   { id: 'saksi', label: 'Database Saksi', icon: Shield },
   { id: 'financial', label: 'Financial Compliance', icon: Wallet },
-  { id: 'ai-tech', label: 'Cara Kerja AI', icon: Cpu },
 ];
 
 export function Sidebar({ activeTab, onTabChange, isOpen, onClose }: SidebarProps) {

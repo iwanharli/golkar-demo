@@ -7,7 +7,6 @@ import { CanvasingDashboard } from './components/dashboard/CanvasingDashboard';
 import { SocialMediaDashboard } from './components/dashboard/SocialMediaDashboard';
 import { SaksiDashboard } from './components/dashboard/SaksiDashboard';
 import { FinancialDashboard } from './components/dashboard/FinancialDashboard';
-import { AITechnology } from './components/dashboard/AITechnology';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -27,8 +26,6 @@ function App() {
         return <SaksiDashboard />;
       case 'financial':
         return <FinancialDashboard />;
-      case 'ai-tech':
-        return <AITechnology />;
       default:
         return <ExecutiveSummary />;
     }
@@ -42,7 +39,6 @@ function App() {
       'social': 'Social Media Sentimen & Youth Engagement',
       'saksi': 'Database Saksi & Pengaman Suara',
       'financial': 'Financial Compliance & Fund Tracking',
-      'ai-tech': 'Cara Kerja AI & Keunggulan Teknologi',
     };
     return titles[activeTab] || 'Dashboard';
   };
